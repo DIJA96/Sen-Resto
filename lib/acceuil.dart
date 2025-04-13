@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class Acceuil extends StatefulWidget {
   const Acceuil({super.key});
 
@@ -10,7 +11,6 @@ class Acceuil extends StatefulWidget {
 class _AcceuilState extends State<Acceuil> {
   @override
   Widget build(BuildContext context) {
-
     const List<Map<String, dynamic>> products = [
       {'image': 'images/burgger.PNG', 'name': 'Burgger', 'Price': 588},
       {'image': 'images/chawarma.PNG', 'name': 'Chawarma', 'Price': 499},
@@ -22,9 +22,7 @@ class _AcceuilState extends State<Acceuil> {
 
     return Scaffold(
       // Titre de la page
-
       appBar: AppBar(
-        backgroundColor: Colors.blue,
         actions: [Icon(Icons.more_vert)],
       ),
 
@@ -97,47 +95,65 @@ class _AcceuilState extends State<Acceuil> {
             Expanded(
               child: GridView.count(
                 crossAxisCount: 2,
-                children:products.map((product) => Card(
-                            child: Column(
-                              children: [
-                                Image.asset(
-                                  product['image'],
-                                  height: 150,
-                                  width: 1000,
-                                  fit: BoxFit.cover,
-                                ),
-                                // SizedBox(height: 10),
-                                Text(
-                                  product['name'],
-                                  style: TextStyle(fontSize: 16),
-                                ),
-                                Text(
-                                  "${product['Price']} FCFA",
-                                  style: TextStyle(fontSize: 14),
-                                ),
-                                ElevatedButton(
-                                  onPressed: () {},
-
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.green,
-                                    foregroundColor: Colors.white,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
+                childAspectRatio: 0.75,
+                children:
+                    products
+                        .map(
+                          (product) => Container(
+                            margin: EdgeInsets.all(8),
+                            height: 100,
+                            child: Card(
+                              color: Colors.white,
+                              child: Column(
+                                children: [
+                                  Image.asset(
+                                    product['image'],
+                                    height: 150,
+                                    width: 1000,
+                                    fit: BoxFit.cover,
+                                  ),
+                                  SizedBox(height: 15),
+                                  TextButton(
+                                    onPressed: () {},
+                                    style: TextButton.styleFrom(
+                                      foregroundColor: Colors.black,
+                                    ),
+                                    child: Text(
+                                      product['name'],
+                                      style: TextStyle(fontSize: 16),
                                     ),
                                   ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Icon(
-                                        Icons.shopping_cart,
-                                        color: Colors.red,
-                                      ),
-                                      Text("Ajouter au panier"),
-                                    ],
+                                  Text(
+                                    "${product['Price']} FCFA",
+                                    style: TextStyle(fontSize: 14),
                                   ),
-                                ),
-                              ],
+                                  SizedBox(
+                                    height: 30,
+                                  ),
+                                  ElevatedButton(
+                                    onPressed: () {},
+                            
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.green,
+                                      foregroundColor: Colors.white,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Icon(
+                                          Icons.shopping_cart,
+                                          color: Colors.red,
+                                        ),
+                                        Text("Ajouter au panier"),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         )
@@ -147,7 +163,6 @@ class _AcceuilState extends State<Acceuil> {
           ],
         ),
       ),
-     
     );
   }
 }
