@@ -17,7 +17,7 @@ class _NavbarState extends State<Navbar> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(                                                                        
       body: pages[pageindex],
 
       bottomNavigationBar: NavigationBar(
