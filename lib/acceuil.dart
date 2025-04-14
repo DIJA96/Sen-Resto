@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:sen_restau/cart.dart';
+import 'package:sen_restau/cart_manager.dart';
 
 class Acceuil extends StatefulWidget {
   const Acceuil({super.key});
@@ -21,57 +22,48 @@ class _AcceuilState extends State<Acceuil> {
     ];
 
     return Scaffold(
-      // Titre de la page
       appBar: AppBar(
         actions: [Icon(Icons.more_vert)],
       ),
-
-      // Le boutton bugger
       drawer: Drawer(
         child: ListView(
           children: [
             ListTile(
               leading: Icon(Icons.home, color: Colors.green),
               title: Text("Acceuil"),
-              onTap:
-                  () => {
-                    //
-                  },
+              onTap: () {},
             ),
             ListTile(
               leading: Icon(Icons.shopping_cart, color: Colors.green),
               title: Text("Panier"),
-              onTap:
-                  () => {
-                    //
-                  },
+              onTap: () {
+                // Navigue vers la page Panier en partageant le CartManager
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CartPage(cart: CartManager().cart),
+                  ),
+                );
+              },
             ),
             ListTile(
               leading: Icon(Icons.contact_emergency, color: Colors.green),
               title: Text("Contact"),
-              onTap:
-                  () => {
-                    //
-                  },
+              onTap: () {},
             ),
           ],
         ),
       ),
-
-      //Liste des produits par defaut
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
             SizedBox(height: 22),
-
-            //Boutton ajouter un produits
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ElevatedButton(
                   onPressed: () {},
-
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.green,
                     foregroundColor: Colors.white,
@@ -90,74 +82,78 @@ class _AcceuilState extends State<Acceuil> {
                 ),
               ],
             ),
-
-            // Card pour chaque produits
             Expanded(
               child: GridView.count(
                 crossAxisCount: 2,
                 childAspectRatio: 0.75,
-                children:
-                    products
-                        .map(
-                          (product) => Container(
-                            margin: EdgeInsets.all(8),
-                            height: 100,
-                            child: Card(
-                              color: Colors.white,
-                              child: Column(
-                                children: [
-                                  Image.asset(
-                                    product['image'],
-                                    height: 150,
-                                    width: 1000,
-                                    fit: BoxFit.cover,
-                                  ),
-                                  SizedBox(height: 15),
-                                  TextButton(
-                                    onPressed: () {},
-                                    style: TextButton.styleFrom(
-                                      foregroundColor: Colors.black,
-                                    ),
-                                    child: Text(
-                                      product['name'],
-                                      style: TextStyle(fontSize: 16),
-                                    ),
-                                  ),
-                                  Text(
-                                    "${product['Price']} FCFA",
-                                    style: TextStyle(fontSize: 14),
-                                  ),
-                                  SizedBox(
-                                    height: 30,
-                                  ),
-                                  ElevatedButton(
-                                    onPressed: () {},
-                            
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.green,
-                                      foregroundColor: Colors.white,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Icon(
-                                          Icons.shopping_cart,
-                                          color: Colors.red,
-                                        ),
-                                        Text("Ajouter au panier"),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
+                children: products.map((product) {
+                  return Container(
+                    margin: EdgeInsets.all(8),
+                    height: 100,
+                    child: Card(
+                      color: Colors.white,
+                      child: Column(
+                        children: [
+                          Image.asset(
+                            product['image'],
+                            height: 150,
+                            width: 1000,
+                            fit: BoxFit.cover,
+                          ),
+                          SizedBox(height: 15),
+                          TextButton(
+                            onPressed: () {},
+                            style: TextButton.styleFrom(
+                              foregroundColor: Colors.black,
+                            ),
+                            child: Text(
+                              product['name'],
+                              style: TextStyle(fontSize: 16),
                             ),
                           ),
-                        )
-                        .toList(),
+                          Text(
+                            "${product['Price']} FCFA",
+                            style: TextStyle(fontSize: 14),
+                          ),
+                          SizedBox(height: 30),
+                          ElevatedButton(
+                            onPressed: () {
+                              // Ajoute le produit au CartManager
+                              CartManager().addItem({
+                                'name': product['name'],
+                                'image': product['image'],
+                                'price': product['Price'],
+                              });
+
+                              // Affiche une confirmation
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text('${product['name']} ajouté au panier !'),
+                                  duration: Duration(seconds: 1),
+                                ),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.green,
+                              foregroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(Icons.shopping_cart, color: Colors.red),
+                                Text("Ajouter au panier"),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                }).toList(),
               ),
             ),
           ],
