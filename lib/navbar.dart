@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sen_restau/acceuil.dart';
+import 'package:sen_restau/cart.dart';
 
 class Navbar extends StatefulWidget {
   const Navbar({super.key});
@@ -10,7 +11,9 @@ class Navbar extends StatefulWidget {
 
 class _NavbarState extends State<Navbar> {
   final pages = [
-    Acceuil()
+    Acceuil(),
+    CartPage(cart: null,)
+    
   ];
 
   int pageindex = 0;
