@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:sen_restau/navbar.dart';
 
 void main() {
-  runApp(Myapp());
+  runApp(MyApp());
 }
 
-class Myapp extends StatelessWidget {
-  const Myapp({super.key});
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Navbar(),
+      
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(primarySwatch: Colors.green),
+      home: Navbar(),
     );
   }
 }
