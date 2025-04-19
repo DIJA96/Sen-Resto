@@ -39,20 +39,29 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Contactez-nous'),
-      ),
+      backgroundColor: const Color.fromARGB(255, 236, 234, 234),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(30),
         child: Form(
           key: _formKey,
           child: ListView(
             children: [
+              Align(
+                alignment: Alignment.center,
+                child: Text("Nous Contactez", style: TextStyle(fontWeight: FontWeight.bold,color: Color.fromARGB(255, 49, 203, 54),fontSize: 36),)),
+                SizedBox(
+                  height: 24,
+                ),
               TextFormField(
                 controller: _nameController,
                 decoration: const InputDecoration(
                   labelText: 'Nom',
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  filled: true,
+                  fillColor: Colors.white,
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -66,7 +75,12 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
                 controller: _emailController,
                 decoration: const InputDecoration(
                   labelText: 'Email',
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    borderSide: BorderSide(color: Colors.transparent),
+                  ),
+                  filled: true,
+                  fillColor: Colors.white,
                 ),
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) {
@@ -84,8 +98,13 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
                 controller: _messageController,
                 decoration: const InputDecoration(
                   labelText: 'Message',
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    borderSide: BorderSide(color: Colors.transparent),
+                  ),
                   alignLabelWithHint: true,
+                  filled: true,
+                  fillColor: Colors.white,
                 ),
                 maxLines: 5,
                 validator: (value) {
@@ -103,7 +122,13 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
                 onPressed: _submitForm,
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16),
+                  backgroundColor: Color.fromARGB(255, 49, 203, 54),
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                 ),
+                
                 child: const Text('Envoyer'),
               ),
             ],
