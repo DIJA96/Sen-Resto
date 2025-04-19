@@ -14,7 +14,7 @@ class _NavbarState extends State<Navbar> {
   final pages = [
     Acceuil(),
     CartPage(cart: null,),
-    ContactPage()
+    ContactFormScreen(),
   ];
 
   int pageindex = 0;
