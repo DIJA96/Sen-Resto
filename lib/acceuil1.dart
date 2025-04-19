@@ -44,26 +44,28 @@ class AccueilPage extends StatelessWidget {
               ),
 
               const SizedBox(height: 30),
-
-              // BOUTON S'inscrire
-              ElevatedButton(
-                onPressed: () {
-                  // Action vers la page d'inscription
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red,
-                  foregroundColor: Colors.white,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Vous n\'avez pas de compte ?',
+                    style: TextStyle(color: Colors.black, fontSize: 16),
                   ),
-                ),
-                child: const Text(
-                  "S'inscrire",
-                  style: TextStyle(fontSize: 16),
-                ),
+                  TextButton(
+                    onPressed: () {
+                      // Action vers la page d'inscription
+                    },
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.red,
+                    ),
+                    child: const Text(
+                      'S\'inscrire',
+                      style: TextStyle(color: Colors.red, fontSize: 16),
+                    ),
+                  ),
+                ],
               ),
+              
             ],
           ),
         ),
