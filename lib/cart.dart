@@ -14,9 +14,11 @@ class _CartPageState extends State<CartPage> {
     final cart = CartManager().cart;
 
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 236, 234, 234),
       appBar: AppBar(
-        title: Text("Panier"),
+        title: Text("Panier",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),),
         actions: [Icon(Icons.more_vert)],
+        backgroundColor: Colors.white,
       ),
       body: cart.isEmpty
           ? Center(child: Text("Votre panier est vide 😢"))
@@ -31,9 +33,10 @@ class _CartPageState extends State<CartPage> {
                         margin: EdgeInsets.all(8),
                         height: 100,
                         child: Card(
+                          color: Colors.white,
                           child: ListTile(
                             leading: Image.asset(item['image'], width: 50),
-                            title: Text(item['name'], style: TextStyle(color: Colors.green),),
+                            title: Text(item['name'], style: TextStyle(color: Color.fromARGB(255, 49, 203, 54),),),
                             subtitle: Text('${item['price']} FCFA'),
                             trailing: Row(
                               mainAxisSize: MainAxisSize.min,
@@ -73,16 +76,16 @@ class _CartPageState extends State<CartPage> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: EdgeInsets.all(16.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Total"),
+                      Text("Total", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
                       Text(
                         "${CartManager().total.toStringAsFixed(0)} FCFA",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.green,
+                          color: Color.fromARGB(255, 49, 203, 54),
                         ),
                       ),
                     ],

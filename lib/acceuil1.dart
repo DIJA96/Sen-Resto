@@ -6,7 +6,7 @@ class AccueilPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green,
+      backgroundColor:  Color.fromARGB(255, 49, 203, 54),
       body: SafeArea(
         child: Center(
           child: Column(

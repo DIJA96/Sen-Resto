@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sen_restau/inscrire.dart';
+import 'package:sen_restau/navbar.dart';
 
 void main() {
   runApp(Myapp());
@@ -11,7 +11,7 @@ class Myapp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Inscrire(),
+      home: Navbar(),
       debugShowCheckedModeBanner: false,
     );
   }

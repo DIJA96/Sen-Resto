@@ -22,19 +22,22 @@ class _AcceuilState extends State<Acceuil> {
     ];
 
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 236, 234, 234),
       appBar: AppBar(
         actions: [Icon(Icons.more_vert)],
+        backgroundColor: Colors.white,
+        surfaceTintColor: Colors.white,
       ),
       drawer: Drawer(
         child: ListView(
           children: [
             ListTile(
-              leading: Icon(Icons.home, color: Colors.green),
+              leading: Icon(Icons.home, color: Color.fromARGB(255, 49, 203, 54),),
               title: Text("Acceuil"),
               onTap: () {},
             ),
             ListTile(
-              leading: Icon(Icons.shopping_cart, color: Colors.green),
+              leading: Icon(Icons.shopping_cart, color: Color.fromARGB(255, 49, 203, 54),),
               title: Text("Panier"),
               onTap: () {
                 // Navigue vers la page Panier en partageant le CartManager
@@ -47,7 +50,7 @@ class _AcceuilState extends State<Acceuil> {
               },
             ),
             ListTile(
-              leading: Icon(Icons.contact_emergency, color: Colors.green),
+              leading: Icon(Icons.contact_emergency, color: Color.fromARGB(255, 49, 203, 54),),
               title: Text("Contact"),
               onTap: () {},
             ),
@@ -58,14 +61,14 @@ class _AcceuilState extends State<Acceuil> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            SizedBox(height: 22),
+            SizedBox(height: 20),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
+                    backgroundColor: Color.fromARGB(255, 49, 203, 54),
                     foregroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -85,22 +88,22 @@ class _AcceuilState extends State<Acceuil> {
             Expanded(
               child: GridView.count(
                 crossAxisCount: 2,
-                childAspectRatio: 0.75,
+                childAspectRatio: 0.9,
                 children: products.map((product) {
                   return Container(
                     margin: EdgeInsets.all(8),
-                    height: 100,
+                    height: 70,
                     child: Card(
                       color: Colors.white,
                       child: Column(
                         children: [
                           Image.asset(
                             product['image'],
-                            height: 150,
-                            width: 1000,
+                            height: 100,
+                            width: double.infinity,
                             fit: BoxFit.cover,
                           ),
-                          SizedBox(height: 15),
+                          SizedBox(height: 3),
                           TextButton(
                             onPressed: () {},
                             style: TextButton.styleFrom(
@@ -108,14 +111,14 @@ class _AcceuilState extends State<Acceuil> {
                             ),
                             child: Text(
                               product['name'],
-                              style: TextStyle(fontSize: 16),
+                              style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
                             ),
                           ),
                           Text(
                             "${product['Price']} FCFA",
                             style: TextStyle(fontSize: 14),
                           ),
-                          SizedBox(height: 30),
+                          SizedBox(height: 3),
                           ElevatedButton(
                             onPressed: () {
                               // Ajoute le produit au CartManager
@@ -134,8 +137,9 @@ class _AcceuilState extends State<Acceuil> {
                               );
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.green,
+                              backgroundColor: Color.fromARGB(255, 49, 203, 54),
                               foregroundColor: Colors.white,
+                              minimumSize: Size(100, 35),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
