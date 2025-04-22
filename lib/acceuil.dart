@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'details.dart'; // Assure-toi que ce fichier est bien importé
+import 'package:sen_restau/cart.dart';
+import 'package:sen_restau/cart_manager.dart';
+
 
 class Acceuil extends StatefulWidget {
   const Acceuil({super.key});
@@ -21,24 +23,39 @@ class _AcceuilState extends State<Acceuil> {
     ];
 
     return Scaffold(
+
+
+      backgroundColor: const Color.fromARGB(255, 236, 234, 234),
+
       appBar: AppBar(
         actions: [Icon(Icons.more_vert)],
+        backgroundColor: Colors.white,
+        surfaceTintColor: Colors.white,
       ),
       drawer: Drawer(
         child: ListView(
           children: [
             ListTile(
-              leading: Icon(Icons.home, color: Colors.green),
+              leading: Icon(Icons.home, color: Color.fromARGB(255, 49, 203, 54),),
               title: Text("Acceuil"),
               onTap: () {},
             ),
             ListTile(
-              leading: Icon(Icons.shopping_cart, color: Colors.green),
+              leading: Icon(Icons.shopping_cart, color: Color.fromARGB(255, 49, 203, 54),),
               title: Text("Panier"),
-              onTap: () {},
+              onTap: () {
+                // Navigue vers la page Panier en partageant le CartManager
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CartPage(cart: CartManager().cart),
+                  ),
+                );
+              },
+
             ),
             ListTile(
-              leading: Icon(Icons.contact_emergency, color: Colors.green),
+              leading: Icon(Icons.contact_emergency, color: Color.fromARGB(255, 49, 203, 54),),
               title: Text("Contact"),
               onTap: () {},
             ),
@@ -49,14 +66,15 @@ class _AcceuilState extends State<Acceuil> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            SizedBox(height: 22),
+            SizedBox(height: 20),
+
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
+                    backgroundColor: Color.fromARGB(255, 49, 203, 54),
                     foregroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -76,67 +94,62 @@ class _AcceuilState extends State<Acceuil> {
             Expanded(
               child: GridView.count(
                 crossAxisCount: 2,
-                childAspectRatio: 0.75,
+                childAspectRatio: 0.9,
                 children: products.map((product) {
                   return Container(
                     margin: EdgeInsets.all(8),
-                    height: 100,
+                    height: 70,
+
                     child: Card(
                       color: Colors.white,
                       child: Column(
                         children: [
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Details(
-                                    image: product['image'],
-                                    name: product['name'],
-                                    price: product['Price'],
-                                  ),
-                                ),
-                              );
-                            },
-                            child: Image.asset(
-                              product['image'],
-                              height: 150,
-                              width: 1000,
-                              fit: BoxFit.cover,
-                            ),
+                          Image.asset(
+                            product['image'],
+                            height: 100,
+                            width: double.infinity,
+                            fit: BoxFit.cover,
                           ),
-                          SizedBox(height: 15),
+                          SizedBox(height: 3),
                           TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Details(
-                                    image: product['image'],
-                                    name: product['name'],
-                                    price: product['Price'],
-                                  ),
-                                ),
-                              );
-                            },
+                            onPressed: () {},
                             style: TextButton.styleFrom(
                               foregroundColor: Colors.black,
                             ),
                             child: Text(
                               product['name'],
-                              style: TextStyle(fontSize: 16),
+                              style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
                             ),
                           ),
+
                           Text(
                             "${product['Price']} FCFA",
                             style: TextStyle(fontSize: 14),
                           ),
-                          SizedBox(height: 30),
+
+                          SizedBox(height: 3),
                           ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              // Ajoute le produit au CartManager
+                              CartManager().addItem({
+                                'name': product['name'],
+                                'image': product['image'],
+                                'price': product['Price'],
+                              });
+
+                              // Affiche une confirmation
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text('${product['name']} ajouté au panier !'),
+                                  duration: Duration(seconds: 1),
+                                ),
+                              );
+                            },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.green,
+                              backgroundColor: Color.fromARGB(255, 49, 203, 54),
                               foregroundColor: Colors.white,
+                              minimumSize: Size(100, 35),
+
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
@@ -145,10 +158,8 @@ class _AcceuilState extends State<Acceuil> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Icon(
-                                  Icons.shopping_cart,
-                                  color: Colors.red,
-                                ),
+                                Icon(Icons.shopping_cart, color: Colors.red),
+
                                 Text("Ajouter au panier"),
                               ],
                             ),

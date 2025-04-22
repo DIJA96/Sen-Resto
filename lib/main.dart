@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sen_restau/navbar.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp( MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.green),
+      
       home: Navbar(),
     );
   }
