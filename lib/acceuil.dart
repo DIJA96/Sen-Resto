@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sen_restau/cart.dart';
 import 'package:sen_restau/cart_manager.dart';
+import 'package:sen_restau/details.dart';
 
 
 class Acceuil extends StatefulWidget {
@@ -112,7 +113,19 @@ class _AcceuilState extends State<Acceuil> {
                           ),
                           SizedBox(height: 3),
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              // Navigue vers la page de détails du produit
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Details(
+                                    image: product['image'],
+                                    name: product['name'],
+                                    price: product['Price'],
+                                  ),
+                                ),
+                              );
+                            },
                             style: TextButton.styleFrom(
                               foregroundColor: Colors.black,
                             ),
